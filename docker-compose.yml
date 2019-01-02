@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+    php:
+        build: .
+        ports:
+            - 80:80
+        restart: always
+        volumes:
+            - ./:/var/www/html/
+            - ./:/etc/apache2/sites-enabled
+
+    db:
+        image: mysql:5.7
+        #image: mysql → doesn't work with php
+        restart: always
+        ports:
+            - 3306:3306
+        environment:
+            - MYSQL_DATABASE=___base_name___
+            - MYSQL_USER=db
+            - MYSQL_PASSWORD=root
+            - MYSQL_ROOT_PASSWORD=root
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
