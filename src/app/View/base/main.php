@@ -41,7 +41,6 @@
         <meta name="theme-color" content="#fff">
         <link rel="shortcut icon" href="/fav/favicon.ico">
         <!-- Style -->
-        <!-- CSS after Typekit is better -->
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>

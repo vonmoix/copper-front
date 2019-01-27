@@ -1,8 +1,6 @@
 class P404 {
 
-    preload () {
-        console.log('404')
-    }
+    preload () {}
 
 }
 

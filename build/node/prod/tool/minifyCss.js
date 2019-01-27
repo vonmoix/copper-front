@@ -10,7 +10,7 @@ module.exports = _ => {
     cssnano.process(css).then(result => {
         writeInternal({
             content: result.css,
-            type: css,
+            type: 'css',
             callback: callback
         })
     })

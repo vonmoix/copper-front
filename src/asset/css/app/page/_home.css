@@ -6,16 +6,12 @@
 /*─────────────────────────────────────────────────────────────────────────────────────────────────*/
 /*─────────────────────────────────────────────────────────────────────────────────────────────────*/
 #h {
-    position: absolute 0;
-    background: #240051;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
     color: #fff;
-}
-#h-content {
-    position: absolute 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 10vw;
 }
 #h-link {
     position: fixed;
@@ -25,4 +21,18 @@
     letter-spacing: 0.05vw;
     font-size: 0.9vw;
     opacity: 0.7;
+    pointer-events: all;
+}
+#h-header {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10vw;
+    background: #240051;
+}
+#h-content {
+    margin: -1px 0 0;
+    height: 100vh;
+    background: #32006F;
 }

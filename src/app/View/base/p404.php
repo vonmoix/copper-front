@@ -9,7 +9,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
         <!-- SEO -->
-        <!-- the absence of description tag is used to detect the 404 page in javascript -->
         <title><?= $this->head['title']; ?></title>
         <!-- Favicon -->
         <!-- Link mask icon no compatible W3C → safari svg -->
@@ -21,22 +20,18 @@
         <meta name="theme-color" content="#fff">
         <link rel="shortcut icon" href="/fav/favicon.ico">
         <!-- Style -->
-        <!-- CSS after Typekit is better -->
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
         <main id="app">
             <div id="xhr">
                 <div id="p404">
-                    <a href="/">BACK TO HOME</a>
+                    <a href="/" class="_ost">BACK TO HOME</a>
                 </div>
             </div>
-            <?php include ROOT . 'app/View/common/sail.php'; ?>
-            <?php include ROOT . 'app/View/common/loader.php'; ?>
         </main>
         <?php include ROOT . 'app/View/issue/updateBrowser.php'; ?>
         <?php include ROOT . 'app/View/issue/enableJavascript.php'; ?>
-        <?php include ROOT . 'app/View/common/svg.php'; ?>
         <!-- Script -->
         <script src="/js/app.js"></script>
     </body>

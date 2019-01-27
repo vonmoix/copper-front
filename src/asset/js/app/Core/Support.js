@@ -1,13 +1,11 @@
-import R from '@ariiiman/r'
+import R from '@ariii/r'
 
 class Support {
 
     constructor () {
-        const glSupport = this.glTest()
-
         if (R.Snif.isIEolderThan11 || R.Snif.isSafariOlderThan8) {
             R.Dom.html.className = 'old-browser'
-        } else if (glSupport === false) {
+        } else if (!this.glTest()) {
             R.Dom.html.className = 'no-gl'
         }
 

@@ -3,12 +3,12 @@
 CLASS
 ─────
 
-Class "_tb"     →    targetBlank W3C compatible (target blank)
-Class "_tbs"    →    targetBlank W3C compatible except for safari (target blank safari)
-Class "_ost"    →    open link in same tab without prevent default (open same tab)
+"_tb"     →    targetBlank W3C compatible (target blank)
+"_tbs"    →    targetBlank W3C compatible except for safari (target blank safari)
+"_ost"    →    open link in same tab without prevent default (open same tab)
 
-PENRYN
-──────
+COPPER PROPERTIES
+─────────────────
 
 is404
 path
@@ -19,7 +19,7 @@ xhr
 
 */
 
-import R from '@ariiiman/r'
+import R from '@ariii/r'
 import Xhr from './Xhr.js'
 import EventDelegation from './EventDelegation.js'
 
@@ -32,27 +32,30 @@ class Router {
         // Outro is on : paralyse outro method during animations
         c.outroIsOn = false
 
+        // Is local
+        const host = location.hostname
+        c.isLocal = host === '10.0.75.1' || host === 'localhost'
+
+        // Path
         c.path = {new: location.pathname}
 
         // On popstate
         Xhr.onPopstate()
 
-        // Controller + EventDelegation
-        this.p404Controller = o.p404
-        this.MainController = o.main
-
-        const Controller = this.getController()
+        // Controller
+        const p404Controller = o.p404
+        const MainController = o.main
 
         // Event delegation
-        R.BM(this, ['getController'])
-        new EventDelegation(this.getController)
+        new EventDelegation(getC)
 
         // Preload
-        Controller.preload()
-    }
+        getC().preload()
 
-    getController () {
-        return !document.querySelector('meta[name=description]') ? this.p404Controller : this.MainController
+        // Get Controller
+        function getC () {
+            return !document.querySelector('meta[name=description]') ? p404Controller : MainController
+        }
     }
 
 }

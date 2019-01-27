@@ -3,13 +3,10 @@
 CONTROLLER
 ──────────
 
-Xhr.controller(pageName, myCallback, args);
+Xhr.controller(page, callback, args);
 
-function myCallback(response, args) {
-
-    // Insert HTML
-    app.insertAdjacentHTML('beforeend', response);
-
+function callback (response, args) {
+    app.insertAdjacentHTML('beforeend', response)
 }
 
 ONPOPSTATE
@@ -19,7 +16,7 @@ Xhr.onPopstate()
 
 */
 
-import R from '@ariiiman/r'
+import R from '@ariii/r'
 
 class Xhr {
 
@@ -41,11 +38,8 @@ class Xhr {
         }
         xhr.send(null)
 
-        // Browser history update
         function getHistoryUpdate () {
-            const pageUrl = page === 'home' ? '/' : page
-
-            history.pushState({key: 'value'}, 'titre', pageUrl)
+            history.pushState({}, '', page)
         }
     }
 
@@ -53,28 +47,26 @@ class Xhr {
         const d = document
         const w = window
         const c = 'complete'
-        const a = 'add'
+        const a = 'a'
 
-        let blockPopstateEvent = d.readyState !== c
+        let popstateEventStopper = d.readyState !== c
 
         R.L(w, a, 'load', load)
         R.L(w, a, 'popstate', popstate)
 
         function load () {
-            setTimeout(_ => {
-                blockPopstateEvent = false
-            }, 0)
+            setTimeout(_ => { popstateEventStopper = false }, 0)
         }
 
         function popstate (e) {
-            if (blockPopstateEvent && d.readyState === c) {
+            if (popstateEventStopper && d.readyState === c) {
                 e.preventDefault()
                 e.stopImmediatePropagation()
             }
         }
 
-        w.onpopstate = e => {
-            w.location.href = location.pathname
+        onpopstate = e => {
+            location.href = location.pathname
         }
     }
 

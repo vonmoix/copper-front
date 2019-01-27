@@ -1,47 +1,48 @@
-import R from '@ariiiman/r'
+import R from '@ariii/r'
 import Xhr from './Xhr.js'
 
 class EventDelegation {
 
     constructor (getController) {
         // Opts
-        this.getController = getController
+        this.getC = getController
 
         // Parameters
         this.c = Copper
         this.xhr = R.G.id('xhr')
 
         // Bind
-        R.BM(this, ['eventDelegation', 'done', 'xhrCallback'])
+        R.BM(this, ['eDeleg', 'done', 'xhrCb'])
 
-        R.L(R.Dom.body, 'add', 'click', this.eventDelegation)
+        R.L(R.Dom.body, 'a', 'click', this.eDeleg)
     }
 
-    eventDelegation (event) {
+    eDeleg (e) {
         const w = window
-        let target = event.target
+        let target = e.target
         let targetIsATag = false
-        let targetIsASubmit = false
+        let targetIsSubmit = false
 
         while (target) {
-            if (target.tagName === 'A') {
+            const tagName = target.tagName
+            if (tagName === 'A') {
                 targetIsATag = true
                 break
-            } else if ((target.tagName === 'INPUT' || target.tagName === 'BUTTON') && target.type === 'submit') {
-                targetIsASubmit = true
+            } else if ((tagName === 'INPUT' || tagName === 'BUTTON') && target.type === 'submit') {
+                targetIsSubmit = true
                 break
             }
             target = target.parentNode
         }
 
         if (targetIsATag) {
-            const targetHref = target.dataset.href === undefined ? target.href : target.dataset.href
+            const targetHref = R.Is.und(target.dataset.href) ? target.href : target.dataset.href
 
             if (target.classList.contains('_tb')) {
-                prD()
+                pD()
                 w.open(targetHref)
             } else if (target.classList.contains('_tbs')) {
-                prD()
+                pD()
 
                 if (this.isTouch && this.isSafari) {
                     w.location.href = targetHref
@@ -53,9 +54,9 @@ class EventDelegation {
                 const hrefIsMailto = targetHref.substring(0, 6) === 'mailto'
 
                 if (hrefBeginByHash) {
-                    prD()
+                    pD()
                 } else if (!hrefIsMailto && !target.classList.contains('_ost') && targetHref !== '' && target.getAttribute('target') !== '_blank') {
-                    prD()
+                    pD()
 
                     if (this.c.outroIsOn) {
                         this.path = {
@@ -66,32 +67,31 @@ class EventDelegation {
                         if (this.path.old !== this.path.new) {
                             this.c.outroIsOn = false
 
-                            this.target = target
-                            this.xhrReq()
+                            this.xhrReq(target)
                         }
                     }
                 } else if (hrefIsMailto) {
-                    prD()
+                    pD()
                     const myWindow = w.open(targetHref)
                     setTimeout(_ => {
                         myWindow.close()
                     }, 300)
                 }
             }
-        } else if (targetIsASubmit) {
-            prD()
+        } else if (targetIsSubmit) {
+            pD()
         }
 
-        function prD () {
-            event.preventDefault()
+        function pD () {
+            e.preventDefault()
         }
     }
 
-    xhrReq () {
-        const oldInstance = this.getController()
+    xhrReq (target) {
+        const oldInstance = this.getC()
 
         this.c.done = this.done
-        this.c.target = this.target
+        this.c.target = target
         this.c.path = this.path
         this.c.is404 = false
 
@@ -100,11 +100,11 @@ class EventDelegation {
     }
 
     done () {
-        Xhr.controller(this.path.new, this.xhrCallback)
+        Xhr.controller(this.path.new, this.xhrCb)
     }
 
-    xhrCallback (response) {
-        const newInstance = this.getController()
+    xhrCb (response) {
+        const newInstance = this.getC()
 
         this.c.xhr = {
             insertNew: _ => {
