@@ -5,6 +5,8 @@ import Router from '../../engine/Router.js'
 import P404 from '../Controller/P404.js'
 import Main from '../Controller/Main.js'
 import Data from '../Bundle/Data/Data.js'
+import GLCore from '../Bundle/GL/_GLCore.js'
+import GL from '../Bundle/GL/_GL.js'
 
 class App {
 
@@ -20,8 +22,17 @@ class App {
         // Scroll top when refresh
         R.TopRefresh()
 
+        // Copper
+        const c = Copper
+
         // Data
-        Copper.data = Data
+        c.data = Data
+
+        // GL
+        if (!c.isMobile) {
+            c.GLCore = new GLCore()
+            c.GL = new GL()
+        }
 
         // Resize
         new Resize()

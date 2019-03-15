@@ -17,6 +17,11 @@ html {
     left: 0;
     width: 100vw;
     height: 100vh;
-    pointer-events: none;
     overflow: hidden;
+    pointer-events: none;
+    pointer-events: all;
+}
+.is-mobile #app {
+    position: relative;
+    overflow: visible;
 }

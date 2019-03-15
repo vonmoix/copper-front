@@ -30,6 +30,16 @@ class Resize {
         c.winWpsdW = c.win.w / c.psd.w
         c.winHpsdH = c.win.h / c.psd.h
         c.psdWwinW = c.psd.w / c.win.w
+
+        // -------------------------------------------
+
+        c.win.ratio = c.win.h / c.win.w
+
+        // -------------------------------------------
+        // Shape
+
+        c.shape = c.data.gl
+        c.shapeL = c.shape.length
     }
 
 }

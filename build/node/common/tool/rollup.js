@@ -16,9 +16,7 @@ module.exports = opts => {
             }),
             babel({
                 babelrc: false,
-                presets: [['@babel/preset-env', { 'modules': false }]],
-                plugins: ['@babel/plugin-external-helpers'],
-                externalHelpers: true
+                presets: [['@babel/preset-env', { 'modules': false }]]
             }),
             resolve(),
             commonjs({

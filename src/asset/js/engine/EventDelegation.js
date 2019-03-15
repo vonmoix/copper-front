@@ -12,12 +12,12 @@ class EventDelegation {
         this.xhr = R.G.id('xhr')
 
         // Bind
-        R.BM(this, ['eDeleg', 'done', 'xhrCb'])
+        R.BM(this, ['eD', 'done', 'xhrCb'])
 
-        R.L(R.Dom.body, 'a', 'click', this.eDeleg)
+        R.L(R.Dom.body, 'a', 'click', this.eD)
     }
 
-    eDeleg (e) {
+    eD (e) {
         const w = window
         let target = e.target
         let targetIsATag = false
@@ -41,21 +41,10 @@ class EventDelegation {
             if (target.classList.contains('_tb')) {
                 pD()
                 w.open(targetHref)
-            } else if (target.classList.contains('_tbs')) {
-                pD()
-
-                if (this.isTouch && this.isSafari) {
-                    w.location.href = targetHref
-                } else {
-                    w.open(targetHref)
-                }
             } else {
-                const hrefBeginByHash = targetHref.charAt(targetHref.length - 1) === '#'
                 const hrefIsMailto = targetHref.substring(0, 6) === 'mailto'
 
-                if (hrefBeginByHash) {
-                    pD()
-                } else if (!hrefIsMailto && !target.classList.contains('_ost') && targetHref !== '' && target.getAttribute('target') !== '_blank') {
+                if (!hrefIsMailto && !target.classList.contains('_ost') && targetHref !== '' && target.getAttribute('target') !== '_blank') {
                     pD()
 
                     if (this.c.outroIsOn) {

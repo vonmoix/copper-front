@@ -7,7 +7,8 @@
         <!-- Robots -->
         <meta name="robots" content="<?= $this->head['robots']; ?>">
         <!-- Device -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=5.0">
         <meta name="format-detection" content="telephone=no">
         <!-- SEO -->
         <title><?= $this->head['title']; ?></title>
@@ -48,12 +49,14 @@
             <div id="xhr">
                 <?= $this->content; ?>
             </div>
+            <canvas id="gl"></canvas>
             <?php include ROOT . 'app/View/common/sail.php'; ?>
             <?php include ROOT . 'app/View/common/loader.php'; ?>
         </main>
-        <?php include ROOT . 'app/View/issue/updateBrowser.php'; ?>
-        <?php include ROOT . 'app/View/issue/enableJavascript.php'; ?>
         <?php include ROOT . 'app/View/common/svg.php'; ?>
+        <?php include ROOT . 'app/View/issue/noGL.php'; ?>
+        <?php include ROOT . 'app/View/issue/enableJavascript.php'; ?>
+        <?php include ROOT . 'app/View/issue/updateBrowser.php'; ?>
         <!-- Script -->
         <script src="/js/app.js"></script>
     </body>

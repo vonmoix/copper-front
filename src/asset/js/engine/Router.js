@@ -4,13 +4,12 @@ CLASS
 ─────
 
 "_tb"     →    targetBlank W3C compatible (target blank)
-"_tbs"    →    targetBlank W3C compatible except for safari (target blank safari)
 "_ost"    →    open link in same tab without prevent default (open same tab)
 
 COPPER PROPERTIES
 ─────────────────
 
-is404
+isLocal
 path
 target
 outroIsOn
@@ -26,7 +25,6 @@ import EventDelegation from './EventDelegation.js'
 class Router {
 
     constructor (o) {
-        // Parameters
         const c = Copper
 
         // Outro is on : paralyse outro method during animations

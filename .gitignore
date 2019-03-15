@@ -7,7 +7,9 @@ package-lock.json
 yarn.lock
 dist
 src/app/Config/Database.php
-src/asset/js/app/Bundle
+src/asset/js/app
+src/asset/js/engine
+src/asset/css/app
 src/asset/css/lib
 src/public/css
 src/public/js

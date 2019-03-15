@@ -6,7 +6,30 @@
 /*─────────────────────────────────────────────────────────────────────────────────────────────────*/
 /*─────────────────────────────────────────────────────────────────────────────────────────────────*/
 .footer {
+    position: relative;
     margin: -1px 0 0;
     height: 100vh;
     background: #2A2A2A;
 }
+/*───────────────────────────────────────────────────────────────*/
+/*─                          top
+/*───────────────────────────────────────────────────────────────*/
+.footer-top {
+    position: absolute;
+    font-weight: 200;
+    pointer-events: all;
+    cursor: pointer;
+}
+.is-desktop .footer-top {
+    bottom: 2vw;
+    left: 2.2vw;
+    letter-spacing: 0.05vw;
+    font-size: 0.9vw;
+}
+.is-mobile .footer-top {
+    bottom: 3vw;
+    left: 3vw;
+    letter-spacing: 0.15vw;
+    font-size: 3vw;
+}
+
