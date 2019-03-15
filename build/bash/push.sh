@@ -9,5 +9,5 @@ PACKAGE_VERSION=$(cat package.json \
 echo >> package.json
 git add --all
 git commit -m "$PACKAGE_VERSION"
-git push git@github.com:ariiiman/penryn-starter.git
-#git push --set-upstream git@github.com:ariiiman/penryn-starter.git master
+git push git@github.com:ariiiman/copper-front.git
+#git push --set-upstream git@github.com:ariiiman/copper-front.git master
