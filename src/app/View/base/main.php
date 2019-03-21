@@ -45,18 +45,25 @@
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
+        <!-- App -->
         <main id="app">
+            <!-- Xhr -->
             <div id="xhr">
                 <?= $this->content; ?>
             </div>
+            <!-- GL -->
             <canvas id="gl"></canvas>
+            <!-- Sail -->
             <?php include ROOT . 'app/View/common/sail.php'; ?>
+            <!-- Loader -->
             <?php include ROOT . 'app/View/common/loader.php'; ?>
+            <!-- Svg -->
+            <?php include ROOT . 'app/View/common/svg.php'; ?>
+            <!-- Issues -->
+            <?php include ROOT . 'app/View/issue/noGL.php'; ?>
+            <?php include ROOT . 'app/View/issue/enableJavascript.php'; ?>
+            <?php include ROOT . 'app/View/issue/updateBrowser.php'; ?>
         </main>
-        <?php include ROOT . 'app/View/common/svg.php'; ?>
-        <?php include ROOT . 'app/View/issue/noGL.php'; ?>
-        <?php include ROOT . 'app/View/issue/enableJavascript.php'; ?>
-        <?php include ROOT . 'app/View/issue/updateBrowser.php'; ?>
         <!-- Script -->
         <script src="/js/app.js"></script>
     </body>

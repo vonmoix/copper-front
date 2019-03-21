@@ -24,15 +24,18 @@
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
+        <!-- App -->
         <main id="app">
+            <!-- Xhr -->
             <div id="xhr">
                 <div id="p404">
                     <a href="/" class="_ost">BACK TO HOME</a>
                 </div>
             </div>
+            <!-- Issues -->
+            <?php include ROOT . 'app/View/issue/updateBrowser.php'; ?>
+            <?php include ROOT . 'app/View/issue/enableJavascript.php'; ?>
         </main>
-        <?php include ROOT . 'app/View/issue/updateBrowser.php'; ?>
-        <?php include ROOT . 'app/View/issue/enableJavascript.php'; ?>
         <!-- Script -->
         <script src="/js/app.js"></script>
     </body>
