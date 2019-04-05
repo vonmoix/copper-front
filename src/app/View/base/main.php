@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-    <head itemscope>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="canonical" href="<?= $this->head['url']; ?>">
@@ -20,10 +20,6 @@
         <meta name="twitter:description" content="<?= $this->head['description']; ?>">
         <meta name="twitter:image" content="<?= $this->head['urlBase'] . $this->head['opengraph']; ?>">
         <meta name="twitter:creator" content="<?= $this->head['twitter']['creator']; ?>">
-        <!-- Google+ -->
-        <meta itemprop="name" content="<?= $this->head['title']; ?>">
-        <meta itemprop="description" content="<?= $this->head['description']; ?>">
-        <meta itemprop="image" content="<?= $this->head['urlBase'] . $this->head['opengraph']; ?>">
         <!-- Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="<?= $this->head['url']; ?>">

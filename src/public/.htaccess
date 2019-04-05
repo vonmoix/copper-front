@@ -5,17 +5,35 @@ Options +FollowSymlinks -Indexes -Multiviews
 RewriteEngine On
 RewriteBase /
 
+############################################
+# MOBILE
+############################################
+
 #RewriteCond %{HTTP_USER_AGENT} "ipod|iphone|ipad|android|palm|blackberry" [NC]
 #RewriteCond %{HTTP_HOST} !^m
 #RewriteRule (.*) https://www.m.example.com/ [R=301,L]
 
-RewriteCond %{HTTP_HOST} ^example.com$
-RewriteRule ^(.*) http://www.example.com/$1 [QSA,L,R=301]
-#RewriteRule ^(.*) https://www.example.com/$1 [QSA,L,R=301]
+###########################################
+# REDIRECT * TO HTTPS WITHOUT WWW
+###########################################
 
-#RewriteCond %{HTTP_HOST} ^(www\.)?example\.com$ [NC]
-#RewriteCond %{HTTPS} !=on
-#RewriteRule ^/?(.*) https://www.example.com/$1 [R,L]
+#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+#RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+#RewriteCond %{HTTPS} !on
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+###########################################
+# REDIRECT * TO HTTPS WITH WWW
+###########################################
+
+#RewriteCond %{HTTP_HOST} !^www\.
+#RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+###########################################
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$   /$1 [L,R=301]
