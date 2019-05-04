@@ -6,5 +6,5 @@
     <!-- footer -->
     <?php include ROOT . 'app/View/common/footer.php'; ?>
     <!-- link -->
-    <a id="h-link" href="/about">ABOUT</a>
+    <a id="h-link" tabIndex="-1" href="/about">ABOUT</a>
 </div>

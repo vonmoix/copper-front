@@ -53,8 +53,10 @@
             <?php include ROOT . 'app/View/common/sail.php'; ?>
             <!-- Loader -->
             <?php include ROOT . 'app/View/common/loader.php'; ?>
+            <!-- Grid -->
+            <?php include ROOT . 'app/View/grid/grid-24.php'; ?>
             <!-- Svg -->
-            <?php include ROOT . 'app/View/common/svg.php'; ?>
+            <?php include ROOT . 'app/View/svg/svg.php'; ?>
             <!-- Issue -->
             <?php include ROOT . 'app/View/issue/enableJS.php'; ?>
         </main>
