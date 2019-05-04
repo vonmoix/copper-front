@@ -32,9 +32,8 @@
                     <a href="/" class="_ost">BACK TO HOME</a>
                 </div>
             </div>
-            <!-- Issues -->
-            <?php include ROOT . 'app/View/issue/updateBrowser.php'; ?>
-            <?php include ROOT . 'app/View/issue/enableJavascript.php'; ?>
+            <!-- Issue -->
+            <?php include ROOT . 'app/View/issue/enableJS.php'; ?>
         </main>
         <!-- Script -->
         <script src="/js/app.js"></script>

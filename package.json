@@ -1,6 +1,6 @@
 {
     "name": "copper-front",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "A starter kit for web development",
     "author": "Aristide Benoist",
     "license": "MIT",
@@ -14,37 +14,37 @@
         "push": "bash build/bash/push.sh"
     },
     "dependencies": {
-        "@ariii/r": "0.0.16"
+        "@ariii/r": "0.0.17"
     },
     "devDependencies": {
-        "@babel/core": "7.4.3",
-        "@babel/preset-env": "7.4.3",
+        "@babel/core": "7.4.4",
+        "@babel/preset-env": "7.4.4",
         "autoprefixer": "9.5.1",
-        "browser-sync": "2.26.3",
+        "browser-sync": "2.26.5",
         "colors": "1.3.3",
         "css-mqpacker": "7.0.0",
         "cssnano": "4.1.10",
         "eslint": "5.16.0",
         "eslint-config-standard": "12.0.0",
-        "eslint-plugin-import": "2.17.0",
-        "eslint-plugin-node": "8.0.1",
+        "eslint-plugin-import": "2.17.2",
+        "eslint-plugin-node": "9.0.1",
         "eslint-plugin-promise": "4.1.1",
         "eslint-plugin-standard": "4.0.0",
         "fs-extra": "7.0.1",
         "glob": "7.1.3",
         "html-minifier": "4.0.0",
-        "postcss": "7.0.14",
+        "postcss": "7.0.15",
         "postcss-easy-import": "3.0.0",
         "postcss-media-minmax": "4.0.0",
         "postcss-mixins": "6.2.1",
         "postcss-nested": "4.1.2",
         "postcss-position": "1.0.0",
         "postcss-simple-vars": "5.0.2",
-        "rollup": "1.10.0",
+        "rollup": "1.11.2",
         "rollup-plugin-babel": "4.3.2",
         "rollup-plugin-commonjs": "9.3.4",
         "rollup-plugin-eslint": "5.1.0",
         "rollup-plugin-node-resolve": "4.2.3",
-        "uglify-js": "3.5.4"
+        "uglify-js": "3.5.10"
     }
 }

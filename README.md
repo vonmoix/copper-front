@@ -16,7 +16,7 @@ A front-end starter kit for web development.
 ## Features
 
 * [Docker](https://www.docker.com)
-* [PHP 7.3.3](https://hub.docker.com/_/php)
+* [PHP 7.3.4](https://hub.docker.com/_/php)
 * [MySQL](https://hub.docker.com/_/mysql)
 * [Adminer](https://hub.docker.com/_/adminer)
 * [Browsersync](https://browsersync.io)

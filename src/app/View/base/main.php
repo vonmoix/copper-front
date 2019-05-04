@@ -55,10 +55,8 @@
             <?php include ROOT . 'app/View/common/loader.php'; ?>
             <!-- Svg -->
             <?php include ROOT . 'app/View/common/svg.php'; ?>
-            <!-- Issues -->
-            <?php include ROOT . 'app/View/issue/noGL.php'; ?>
-            <?php include ROOT . 'app/View/issue/enableJavascript.php'; ?>
-            <?php include ROOT . 'app/View/issue/updateBrowser.php'; ?>
+            <!-- Issue -->
+            <?php include ROOT . 'app/View/issue/enableJS.php'; ?>
         </main>
         <!-- Script -->
         <script src="/js/app.js"></script>
