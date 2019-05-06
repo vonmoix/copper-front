@@ -60,9 +60,8 @@
             <!-- Issue -->
             <?php include ROOT . 'app/View/issue/enableJS.php'; ?>
         </main>
-        <!-- Copper + Version -->
-        <script>window._C={v:<?= VERSION; ?>};</script>
         <!-- Script -->
+        <script>window._C={v:<?= VERSION; ?>};</script>
         <script src="/js/app.js?<?= VERSION; ?>"></script>
     </body>
 </html>

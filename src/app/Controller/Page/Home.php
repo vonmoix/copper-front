@@ -21,7 +21,7 @@ class Home extends Controller {
         // SEO
         $this->head['title'] = 'Website — Home';
         $this->head['description'] = '';
-        $this->head['opengraph'] = '/og/1200-630.png';
+        $this->head['opengraph'] = '/og/1200-630.png?' . VERSION;
 
         // Robots
         $this->head['allow-robots'] = true;
