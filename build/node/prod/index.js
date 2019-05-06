@@ -1,4 +1,3 @@
-const colors = require('colors')
 const compile = require('./tool/compile.js')
 const minifyHtml = require('./tool/minifyHtml.js')
 const minifyCss = require('./tool/minifyCss.js')

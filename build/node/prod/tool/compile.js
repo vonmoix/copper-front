@@ -12,6 +12,7 @@ module.exports = callback => {
 
     function compileAppScript () {
         rollup({
+            env: 'PROD',
             entry: config.src + config.compiler.js.entry,
             dest: config.src + config.compiler.js.dest,
             eslint: config.compiler.js.eslint,
