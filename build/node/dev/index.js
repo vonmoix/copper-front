@@ -28,17 +28,17 @@ browserSyncConfigObj.logLevel = 'silent'
 browserSync.init(browserSyncConfigObj)
 
 compilePHP({newV: false})
-compileJs({newV: false})
-compileCss({newV: true})
+compileCss({newV: false})
+compileJs({newV: true})
 
 browserSync.watch(config.php.watch).on('change', _ => {
     compilePHP({newV: true})
 })
-browserSync.watch(config.js.watch).on('change', _ => {
-    compileJs({newV: true})
-})
 browserSync.watch(config.css.watch).on('change', _ => {
     compileCss({newV: true})
+})
+browserSync.watch(config.js.watch).on('change', _ => {
+    compileJs({newV: true})
 })
 
 function compilePHP (o) {
