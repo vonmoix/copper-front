@@ -33,6 +33,8 @@ exit();
 
 */
 
+define('VERSION', 0);
+
 $root = explode('/', $_SERVER['DOCUMENT_ROOT']);
 array_pop($root);
 

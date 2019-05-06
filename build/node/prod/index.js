@@ -18,4 +18,5 @@ function afterPhpMinifier () {
     copy()
 }
 
+// Go
 runCompile()

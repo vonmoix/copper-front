@@ -13,15 +13,15 @@
         <title><?= $this->head['title']; ?></title>
         <!-- Favicon -->
         <!-- Link mask icon no compatible W3C → safari svg -->
-        <link rel="apple-touch-icon" sizes="180x180" href="/fav/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/fav/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/fav/apple-touch-icon.png?<?= VERSION; ?>">
+        <link rel="icon" type="image/png" sizes="32x32" href="/fav/favicon-32x32.png?<?= VERSION; ?>">
+        <link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon-16x16.png?<?= VERSION; ?>">
         <link rel="manifest" href="/fav/site.webmanifest">
         <meta name="msapplication-TileColor" content="#000">
         <meta name="theme-color" content="#fff">
-        <link rel="shortcut icon" href="/fav/favicon.ico">
+        <link rel="shortcut icon" href="/fav/favicon.ico?<?= VERSION; ?>">
         <!-- Style -->
-        <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/css/app.css?<?= VERSION; ?>">
     </head>
     <body>
         <!-- App -->
@@ -35,7 +35,9 @@
             <!-- Issue -->
             <?php include ROOT . 'app/View/issue/enableJS.php'; ?>
         </main>
+        <!-- Copper + Version -->
+        <script>window._C={v:<?= VERSION; ?>};</script>
         <!-- Script -->
-        <script src="/js/app.js"></script>
+        <script src="/js/app.js?<?= VERSION; ?>"></script>
     </body>
 </html>

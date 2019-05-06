@@ -4,6 +4,7 @@ const browserSync = require('browser-sync').create()
 const rollup = require('../common/tool/rollup.js')
 const postcss = require('../common/tool/postcss.js')
 const colors = require('colors')
+const fs = require('fs')
 
 const isWindows = /^win/.test(process.platform)
 const browserSyncConfig = {
@@ -26,51 +27,69 @@ browserSyncConfigObj.logLevel = 'silent'
 
 browserSync.init(browserSyncConfigObj)
 
-var startPHP = gD()
-var startJS = gD()
-var startCSS = gD()
+compilePHP({newV: false})
+compileJs({newV: false})
+compileCss({newV: true})
 
-compilePHP()
-compileJs()
-compileCss()
+browserSync.watch(config.php.watch).on('change', _ => {
+    compilePHP({newV: true})
+})
+browserSync.watch(config.js.watch).on('change', _ => {
+    compileJs({newV: true})
+})
+browserSync.watch(config.css.watch).on('change', _ => {
+    compileCss({newV: true})
+})
 
-browserSync.watch(config.php.watch).on('change', compilePHP)
-browserSync.watch(config.js.watch).on('change', compileJs)
-browserSync.watch(config.css.watch).on('change', compileCss)
-
-function compilePHP () {
-    startPHP = gD()
-    reload({reloadDest: null, time: {start: startPHP, name: '[PHP]', color: 'magenta'}})
+function compilePHP (o) {
+    var startPHP = gD()
+    reload({isCSS: false, time: {start: startPHP, name: '[PHP]', color: 'magenta'}, newV: o.newV})
 }
 
-function compileJs () {
-    startJS = gD()
+function compileJs (o) {
+    var startJS = gD()
     rollup({
         env: 'DEV',
         entry: config.js.entry,
         dest: config.js.dest,
         eslint: config.js.eslint,
         callback: _ => {
-            reload({reloadDest: config.js.dest, time: {start: startJS, name: '[JS] ', color: 'yellow'}})
+            reload({isCSS: false, time: {start: startJS, name: '[JS] ', color: 'yellow'}, newV: o.newV})
         }
     })
 }
 
-function compileCss () {
-    startCSS = gD()
+function compileCss (o) {
+    var startCSS = gD()
     postcss({
         entry: config.css.entry,
         dest: config.css.dest,
         autoprefixer: config.css.autoprefixer,
         callback: _ => {
-            reload({reloadDest: config.css.dest, time: {start: startCSS, name: '[CSS]', color: 'cyan'}})
+            reload({isCSS: true, time: {start: startCSS, name: '[CSS]', color: 'cyan'}, newV: o.newV})
         }
     })
 }
 
-function reload (opts) {
-    showTime(opts.time)
-    browserSync.reload(opts.reloadDest)
+function reload (o) {
+    if (o.newV) {
+        updateVersion()
+    }
+    showTime(o.time)
+    if (o.isCSS) {
+        browserSync.reload(config.css.dest)
+    } else {
+        browserSync.reload()
+    }
+}
+
+// Update index version for JS, CSS files and pictures versioning
+function updateVersion () {
+    const src = 'src/public/index.php'
+    const content = fs.readFileSync(src, 'utf8')
+    const versionCurr = +content.match(/VERSION\',\s(.*?)\);/)[1]
+    const replacement = content.replace('VERSION\', ' + versionCurr + ')', 'VERSION\', ' + (versionCurr + 1) + ')')
+    fs.writeFileSync(src, replacement, 'utf-8')
 }
 
 function showTime (time) {

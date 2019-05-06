@@ -30,7 +30,6 @@ module.exports = opts => {
 
     // Bundle write options
     const bWO = {
-        intro: 'window.Copper={};',
         file: opts.dest
     }
     bWO.format = isPROD ? 'iife' : 'esm'

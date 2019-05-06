@@ -1,9 +1,10 @@
 const config = require('../config/config.js')
 const fs = require('fs')
 
-module.exports = opts => {
-    const replacement = opts.type === 'js' ? '<script>' + opts.content + '</script>' : '<style>' + opts.content + '</style>'
-    const toReplace = opts.type === 'js' ? '<script src="/' + config.minify.js + '"></script>' : '<link rel="stylesheet" href="/' + config.minify.css + '">'
+module.exports = o => {
+    const v = '?<?= VERSION; ?>'
+    const replacement = o.type === 'js' ? '<script>' + o.content + '</script>' : '<style>' + o.content + '</style>'
+    const toReplace = o.type === 'js' ? '<script src="/' + config.minify.js + v + '"></script>' : '<link rel="stylesheet" href="/' + config.minify.css + v + '">'
 
     function writeInternal (i) {
         const file = config.dest + config.internal[i]
@@ -13,7 +14,7 @@ module.exports = opts => {
         fs.writeFileSync(file, newContent, 'utf-8')
 
         if (i === config.internal.length - 1) {
-            opts.callback()
+            o.callback()
         } else {
             writeInternal(i + 1)
         }
