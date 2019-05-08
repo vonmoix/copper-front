@@ -54,7 +54,7 @@
             <!-- Loader -->
             <?php include ROOT . 'app/View/common/loader.php'; ?>
             <!-- Grid -->
-            <?php include ROOT . 'app/View/grid/grid-24.php'; ?>
+            <div id="grid-cta"></div>
             <!-- Svg -->
             <?php include ROOT . 'app/View/svg/svg.php'; ?>
             <!-- Issue -->
