@@ -2,7 +2,6 @@
 
 A front-end starter kit for web development.
 
-
 ## Installation
 
     $ docker-compose up

@@ -1,72 +1,33 @@
 const config = require('./config/config.js')
-const ip = require('./config/ip.js')
-const browserSync = require('browser-sync').create()
+const bs = require('browser-sync').create()
 const rollup = require('../common/tool/rollup.js')
 const postcss = require('../common/tool/postcss.js')
 const colors = require('colors')
 const fs = require('fs')
 
-const isWindows = /^win/.test(process.platform)
-const browserSyncConfig = {
-    win: {
-        open: 'external',
-        host: ip,
-        proxy: ip,
-        port: 3000,
-        notify: false
-    },
-    mac: {
-        open: 'external',
-        proxy: 'http://localhost/',
-        port: 3000,
-        notify: false
-    }
-}
-const browserSyncConfigObj = isWindows ? browserSyncConfig.win : browserSyncConfig.mac
-browserSyncConfigObj.logLevel = 'silent'
-
-browserSync.init(browserSyncConfigObj)
-
-compilePHP({newV: false})
-compileCss({newV: false})
-compileJs({newV: true})
-
-browserSync.watch(config.php.watch).on('change', _ => {
-    compilePHP({newV: true})
-})
-browserSync.watch(config.css.watch).on('change', _ => {
-    compileCss({newV: true})
-})
-browserSync.watch(config.js.watch).on('change', _ => {
-    compileJs({newV: true})
-})
-
 function compilePHP (o) {
-    var startPHP = gD()
-    reload({isCSS: false, time: {start: startPHP, name: '[PHP]', color: 'magenta'}, newV: o.newV})
+    reload({isCSS: false, time: {start: o.startTime, name: '[PHP]', color: 'magenta'}, newV: o.newV})
 }
 
 function compileJs (o) {
-    var startJS = gD()
     rollup({
         env: 'DEV',
         entry: config.js.entry,
         dest: config.js.dest,
         eslint: config.js.eslint,
         callback: _ => {
-            reload({isCSS: false, time: {start: startJS, name: '[JS] ', color: 'yellow'}, newV: o.newV})
+            reload({isCSS: false, time: {start: o.startTime, name: '[JS] ', color: 'yellow'}, newV: o.newV})
         }
     })
 }
 
 function compileCss (o) {
-    var startCSS = gD()
     postcss({
         entry: config.css.entry,
         dest: config.css.dest,
         autoprefixer: config.css.autoprefixer,
         callback: _ => {
-            reload({isCSS: true, time: {start: startCSS, name: '[CSS]', color: 'cyan'}, newV: o.newV})
+            reload({isCSS: true, time: {start: o.startTime, name: '[CSS]', color: 'cyan'}, newV: o.newV})
         }
     })
 }
@@ -77,9 +38,9 @@ function reload (o) {
     }
     showTime(o.time)
     if (o.isCSS) {
-        browserSync.reload(config.css.dest)
+        bs.reload(config.css.dest)
     } else {
-        browserSync.reload()
+        bs.reload()
     }
 }
 
@@ -93,10 +54,51 @@ function updateVersion () {
 }
 
 function showTime (time) {
-    const duration = ((+new Date() - time.start) / 1000).toFixed(3)
-    console.log(colors[time.color](time.name + ' Reloaded in ' + duration + ' secondes'))
+    let timeMsg = ''
+    if (time.start !== 0) {
+        const duration = ((+new Date() - time.start) / 1000).toFixed(3)
+        timeMsg = ' in ' + duration + ' secondes'
+    }
+    console.log(colors[time.color](time.name + ' Built' + timeMsg))
 }
 
 function gD () {
     return +new Date()
 }
+
+// -----------------------
+
+const bsConfig = {
+    open: 'external',
+    port: 3000,
+    notify: false,
+    logLevel: 'silent'
+}
+// Windows
+if (/^win/.test(process.platform)) {
+    const ip = '10.0.75.1'
+    bsConfig.host = ip
+    bsConfig.proxy = ip
+// Mac
+} else {
+    bsConfig.proxy = 'http://localhost/'
+}
+bs.init(bsConfig)
+
+// -----------------------
+
+compilePHP({startTime: 0, newV: false})
+compileCss({startTime: 0, newV: false})
+compileJs({startTime: 0, newV: true})
+
+bs.watch(config.php.watch).on('change', _ => {
+    compilePHP({startTime: 0, newV: true})
+})
+bs.watch(config.css.watch).on('change', _ => {
+    const startTime = gD()
+    compileCss({startTime: startTime, newV: true})
+})
+bs.watch(config.js.watch).on('change', _ => {
+    const startTime = gD()
+    compileJs({startTime: startTime, newV: true})
+})

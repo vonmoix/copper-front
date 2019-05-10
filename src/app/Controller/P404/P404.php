@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Separate;
+namespace App\Controller\P404;
 
 use \Engine\Controller\Controller;
 

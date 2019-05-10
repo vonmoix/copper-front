@@ -38,7 +38,7 @@ class Controller {
         if (isset($_GET['xhr'])) {
             $xhrController['title'] = $this->head['title'];
             $xhrController['view'] = $this->content;
-            print json_encode(array('xhrController' => $xhrController));
+            print json_encode(array('xhrC' => $xhrController));
         } else {
             echo $this->getContent(ROOT . 'app/View/base/main.php');
         }
@@ -47,10 +47,6 @@ class Controller {
     public function renderError () {
         header('HTTP/1.1 404 Not Found', 404, TRUE);
         echo $this->getContent(ROOT . 'app/View/base/p404.php');
-    }
-
-    public function renderDebug () {
-        echo $this->getContent(ROOT . 'app/View/base/debug.php');
     }
 
     private function getContent ($fileName) {
